@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 8 Science | Light – Mirrors and Lenses</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --ink-light: #3d2b0f;
+    --paper: #fdf8ef;
+    --paper-dark: #f5edda;
+    --rule: #e0d4b8;
+    --margin: #f0c060;
+    --margin-line: #e8a830;
+    --accent-red: #c0392b;
+    --accent-blue: #1a5276;
+    --accent-green: #1e5631;
+    --accent-purple: #6c3483;
+    --accent-orange: #d35400;
+    --highlight-yellow: #fef3cd;
+    --highlight-green: #d5f5e3;
+    --highlight-blue: #d6eaf8;
+    --highlight-pink: #fadbd8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #c8b89a;
+    font-family: 'Source Serif 4', Georgia, serif;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .notebook {
+    max-width: 860px;
+    margin: 30px auto;
+    background: var(--paper);
+    box-shadow: 4px 4px 0 #a08060, 8px 8px 0 #8a6a48, 12px 12px 0 #705530;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Spiral holes */
+  .spiral-strip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 52px;
+    background: linear-gradient(180deg, #8a6a48 0%, #705530 100%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding-top: 28px;
+  }
+
+  .spiral-hole {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #c8b89a;
+    margin: 12px 0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+    flex-shrink: 0;
+  }
+
+  /* Margin line */
+  .page-content {
+    margin-left: 52px;
+    position: relative;
+  }
+
+  .page-content::before {
+    content: '';
+    position: absolute;
+    left: 62px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--margin-line);
+    opacity: 0.5;
+  }
+
+  /* Ruled lines on background */
+  .page-inner {
+    padding: 30px 40px 40px 80px;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      var(--rule) 31px,
+      var(--rule) 32px
+    );
+    background-position: 0 24px;
+    min-height: 100vh;
+  }
+
+  /* Cover page */
+  .cover {
+    background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 50%, #1a3a5c 100%);
+    margin-left: 52px;
+    padding: 60px 50px 50px 80px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,215,0,0.08);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 100px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: var(--margin);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 2px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .cover-chapter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  .cover-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--margin);
+    margin-bottom: 30px;
+  }
+
+  .cover-topics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 24px;
+    max-width: 480px;
+  }
+
+  .cover-topic {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .cover-topic::before {
+    content: '◆';
+    color: var(--margin);
+    font-size: 8px;
+    flex-shrink: 0;
+  }
+
+  .cover-meta {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    gap: 40px;
+  }
+
+  .cover-meta-item label {
+    display: block;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 3px;
+  }
+
+  .cover-meta-item span {
+    font-size: 14px;
+    color: white;
+    font-style: italic;
+  }
+
+  /* Section headings */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    border-bottom: 3px double var(--accent-blue);
+    padding-bottom: 6px;
+    margin: 40px 0 20px 0;
+    position: relative;
+  }
+
+  .section-title .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-orange);
+    display: block;
+    margin-bottom: 2px;
+    letter-spacing: 2px;
+  }
+
+  .sub-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--accent-red);
+    margin: 28px 0 12px 0;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent-red);
+  }
+
+  .sub-sub-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent-green);
+    margin: 18px 0 8px 0;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-green);
+    text-underline-offset: 3px;
+  }
+
+  /* Paragraph */
+  p { margin-bottom: 10px; line-height: 1.85; }
+
+  /* Highlight box */
+  .def-box {
+    background: var(--highlight-yellow);
+    border: 1px solid #e8c840;
+    border-left: 5px solid #c8a800;
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    position: relative;
+  }
+
+  .def-box .def-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: #8a6a00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+  }
+
+  .def-box p { margin: 0; }
+
+  .imp-box {
+    background: var(--highlight-pink);
+    border: 1px solid #f1948a;
+    border-left: 5px solid var(--accent-red);
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .imp-box .imp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+  }
+
+  .note-box {
+    background: var(--highlight-blue);
+    border: 1px solid #aed6f1;
+    border-left: 5px solid var(--accent-blue);
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .note-box .note-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+  }
+
+  .green-box {
+    background: var(--highlight-green);
+    border: 1px solid #82e0aa;
+    border-left: 5px solid var(--accent-green);
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  /* Bullet lists */
+  ul { padding-left: 22px; margin: 10px 0; }
+  ul li { margin-bottom: 7px; padding-left: 4px; }
+  ul li::marker { color: var(--accent-blue); }
+
+  ol { padding-left: 24px; margin: 10px 0; }
+  ol li { margin-bottom: 7px; }
+
+  .arrow-list { list-style: none; padding-left: 8px; }
+  .arrow-list li::before { content: '→ '; color: var(--accent-orange); font-weight: 600; }
+
+  /* Keywords */
+  strong { color: var(--ink); font-weight: 600; }
+  .kw { 
+    color: var(--accent-blue); 
+    font-weight: 600; 
+    background: rgba(26,82,118,0.08);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+  .kw-red { 
+    color: var(--accent-red); 
+    font-weight: 600;
+    background: rgba(192,57,43,0.07);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+  .kw-green {
+    color: var(--accent-green);
+    font-weight: 600;
+    background: rgba(30,86,49,0.08);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  table thead th {
+    background: var(--accent-blue);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  table thead th.red-head { background: var(--accent-red); }
+  table thead th.green-head { background: var(--accent-green); }
+  table thead th.purple-head { background: var(--accent-purple); }
+
+  table tbody tr:nth-child(even) { background: #f8f4ee; }
+  table tbody tr:hover { background: #fef9f0; }
+
+  table td {
+    padding: 9px 14px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+  }
+
+  table tbody tr td:first-child {
+    font-weight: 600;
+    color: var(--ink-light);
+  }
+
+  /* Diagram placeholder */
+  .diagram-box {
+    border: 2px dashed #c8a860;
+    background: #fffdf5;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+
+  .diagram-box .diagram-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8a6a00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .diagram-box svg { max-width: 100%; height: auto; }
+  .diagram-box .diagram-note {
+    font-size: 12px;
+    color: var(--accent-red);
+    font-style: italic;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
+  /* SVG styles */
+  .mirror-svg text { font-family: 'Source Serif 4', serif; }
+
+  /* Page divider */
+  .page-break {
+    border: none;
+    border-top: 2px dashed var(--rule);
+    margin: 36px 0;
+  }
+
+  /* Exam section */
+  .exam-section {
+    background: #1a3a5c;
+    margin-left: 52px;
+    padding: 30px 40px 40px 80px;
+    color: white;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(255,255,255,0.05) 31px,
+      rgba(255,255,255,0.05) 32px
+    );
+    background-position: 0 24px;
+  }
+
+  .exam-section .section-title {
+    color: var(--margin);
+    border-bottom-color: var(--margin);
+  }
+
+  .exam-section .sub-title {
+    color: #7fb3d3;
+    border-left-color: #7fb3d3;
+  }
+
+  .exam-section p, .exam-section li { color: rgba(255,255,255,0.9); }
+
+  .exam-question {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 10px 16px;
+    margin: 8px 0;
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .exam-question .q-num {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--margin);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  .answer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #82e0aa;
+    margin-left: 20px;
+    margin-top: 2px;
+  }
+
+  .mcq-option {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 13px;
+  }
+
+  /* Keywords grid */
+  .keywords-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .keyword-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+
+  .keyword-card .kw-term {
+    font-weight: 700;
+    color: var(--margin);
+    font-size: 13px;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .keyword-card .kw-def {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  /* TOC */
+  .toc { padding: 10px 0; }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 14px;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .toc-item .toc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-orange);
+    width: 36px;
+    flex-shrink: 0;
+  }
+  .toc-item .toc-name { flex: 1; }
+
+  /* two-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* stamp */
+  .stamp {
+    display: inline-block;
+    border: 3px solid var(--accent-red);
+    color: var(--accent-red);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="notebook">
+  <!-- Spiral -->
+  <div class="spiral-strip">
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div><div class="spiral-hole"></div>
+    <div class="spiral-hole"></div>
+  </div>
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-badge">Class VIII · Science</div>
+    <div class="cover-chapter">Chapter 10</div>
+    <div class="cover-title">Light –<br>Mirrors &amp;<br>Lenses</div>
+    <div class="cover-subtitle">Notes by Shaswat Sinha</div>
+    <div class="cover-topics">
+      <div class="cover-topic">Introduction to Light</div>
+      <div class="cover-topic">Reflection of Light</div>
+      <div class="cover-topic">Plane Mirrors</div>
+      <div class="cover-topic">Spherical Mirrors</div>
+      <div class="cover-topic">Laws of Reflection</div>
+      <div class="cover-topic">Refraction of Light</div>
+      <div class="cover-topic">Lenses (Convex &amp; Concave)</div>
+      <div class="cover-topic">Exam Questions</div>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><label>Subject</label><span>Science (Physics)</span></div>
+      <div class="cover-meta-item"><label>Type</label><span>Topper Notes</span></div>
+      <div class="cover-meta-item"><label>Purpose</label><span>Exam Preparation</span></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="page-content">
+  <div class="page-inner">
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="section-title">
+      <span class="section-num">CONTENTS</span>
+      Table of Contents
+    </div>
+    <div class="toc">
+      <div class="toc-item"><span class="toc-num">01.</span><span class="toc-name">Introduction to Light</span></div>
+      <div class="toc-item"><span class="toc-num">02.</span><span class="toc-name">Reflection of Light &amp; Laws of Reflection</span></div>
+      <div class="toc-item"><span class="toc-num">03.</span><span class="toc-name">Plane Mirror – Images &amp; Characteristics</span></div>
+      <div class="toc-item"><span class="toc-num">04.</span><span class="toc-name">Spherical Mirrors – Concave &amp; Convex</span></div>
+      <div class="toc-item"><span class="toc-num">05.</span><span class="toc-name">Images Formed by Spherical Mirrors (Tables)</span></div>
+      <div class="toc-item"><span class="toc-num">06.</span><span class="toc-name">Real-Life Uses of Mirrors</span></div>
+      <div class="toc-item"><span class="toc-num">07.</span><span class="toc-name">Refraction of Light</span></div>
+      <div class="toc-item"><span class="toc-num">08.</span><span class="toc-name">Lenses – Convex &amp; Concave</span></div>
+      <div class="toc-item"><span class="toc-num">09.</span><span class="toc-name">Exam-Oriented Questions &amp; Answers</span></div>
+    </div>
+
+    <hr class="page-break">
+
+    <!-- SECTION 1: INTRODUCTION TO LIGHT -->
+    <div class="section-title">
+      <span class="section-num">SECTION 01</span>
+      Introduction to Light
+    </div>
+
+    <div class="sub-title">What is Light?</div>
+    <div class="def-box">
+      <div class="def-label">Definition</div>
+      <p><strong>Light</strong> is a form of energy that travels in straight lines and enables us to see objects around us. It is an electromagnetic wave that does not need any medium to travel — it can travel even through vacuum (empty space).</p>
+    </div>
+
+    <div class="sub-sub-title">Properties of Light</div>
+    <ul>
+      <li>Light travels in a <span class="kw">straight line</span> (rectilinear propagation).</li>
+      <li>Speed of light in air/vacuum = <span class="kw">3 × 10⁸ m/s</span> (3,00,000 km per second!)</li>
+      <li>Light can be <span class="kw">reflected</span> (bounced back) by smooth surfaces.</li>
+      <li>Light can be <span class="kw">refracted</span> (bent) when it passes from one medium to another.</li>
+      <li>Light can be <span class="kw">absorbed</span> by dark or opaque objects.</li>
+    </ul>
+
+    <div class="sub-sub-title">Sources of Light</div>
+    <div class="two-col">
+      <div class="def-box">
+        <div class="def-label">Luminous Objects</div>
+        <p>Objects that <strong>produce their own light</strong>.<br>Examples: Sun, stars, candle flame, torch, electric bulb, firefly.</p>
+      </div>
+      <div class="note-box">
+        <div class="note-label">Non-Luminous Objects</div>
+        <p>Objects that <strong>do NOT produce their own light</strong>. They become visible only when light falls on them.<br>Examples: Moon, table, book, mirror.</p>
+      </div>
+    </div>
+
+    <div class="imp-box">
+      <div class="imp-label">Important Point</div>
+      <p>The <strong>Moon</strong> is a non-luminous body. It reflects the sunlight we see. The Sun is a natural luminous source while an electric bulb is an artificial luminous source.</p>
+    </div>
+
+    <hr class="page-break">
+
+    <!-- SECTION 2: REFLECTION -->
+    <div class="section-title">
+      <span class="section-num">SECTION 02</span>
+      Reflection of Light &amp; Laws of Reflection
+    </div>
+
+    <div class="sub-title">What is Reflection?</div>
+    <div class="def-box">
+      <div class="def-label">Definition</div>
+      <p><span class="kw">Reflection</span> is the process by which light hits a surface and bounces back into the same medium. Mirrors reflect light and help form images.</p>
+    </div>
+
+    <div class="sub-sub-title">Important Terms in Reflection</div>
+    <ul>
+      <li><span class="kw-red">Incident Ray</span> — The ray of light that falls on the mirror surface.</li>
+      <li><span class="kw-red">Reflected Ray</span> — The ray of light that bounces back after hitting the mirror.</li>
+      <li><span class="kw-red">Normal</span> — An imaginary line drawn perpendicular (at 90°) to the mirror at the point where the incident ray hits.</li>
+      <li><span class="kw-red">Angle of Incidence (∠i)</span> — The angle between the incident ray and the normal.</li>
+      <li><span class="kw-red">Angle of Reflection (∠r)</span> — The angle between the reflected ray and the normal.</li>
+      <li><span class="kw-red">Point of Incidence</span> — The exact point on the mirror where the incident ray meets the surface.</li>
+    </ul>
+
+    <!-- Diagram: Reflection -->
+    <div class="diagram-box">
+      <div class="diagram-title">Diagram 1 — Reflection of Light (Draw in Notebook)</div>
+      <svg width="420" height="200" viewBox="0 0 420 200">
+        <!-- Mirror surface -->
+        <rect x="50" y="155" width="320" height="12" fill="#c8c8e0" rx="2"/>
+        <text x="190" y="180" font-size="12" fill="#334" font-family="serif" text-anchor="middle">Mirror Surface (MM')</text>
+        <!-- Normal -->
+        <line x1="210" y1="155" x2="210" y2="30" stroke="#888" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="220" y="35" font-size="11" fill="#555" font-family="serif">Normal</text>
+        <!-- Incident ray -->
+        <line x1="80" y1="40" x2="210" y2="155" stroke="#e74c3c" stroke-width="2"/>
+        <polygon points="210,155 196,138 206,142" fill="#e74c3c"/>
+        <text x="62" y="35" font-size="11" fill="#e74c3c" font-family="serif">Incident Ray</text>
+        <!-- Reflected ray -->
+        <line x1="210" y1="155" x2="340" y2="40" stroke="#2980b9" stroke-width="2"/>
+        <polygon points="340,40 330,55 335,45" fill="#2980b9"/>
+        <text x="310" y="35" font-size="11" fill="#2980b9" font-family="serif">Reflected Ray</text>
+        <!-- Angle arcs -->
+        <path d="M 210 155 m -30 -25 a 40 40 0 0 1 18 -22" fill="none" stroke="#e74c3c" stroke-width="1.5"/>
+        <text x="160" y="128" font-size="11" fill="#e74c3c" font-family="serif">∠i</text>
+        <path d="M 210 155 m 12 -27 a 40 40 0 0 0 18 22" fill="none" stroke="#2980b9" stroke-width="1.5"/>
+        <text x="230" y="128" font-size="11" fill="#2980b9" font-family="serif">∠r</text>
+        <!-- M labels -->
+        <text x="40" y="163" font-size="13" fill="#334" font-family="serif" font-weight="bold">M</text>
+        <text x="372" y="163" font-size="13" fill="#334" font-family="serif" font-weight="bold">M'</text>
+        <!-- Point O -->
+        <circle cx="210" cy="155" r="4" fill="#8e44ad"/>
+        <text x="215" y="152" font-size="11" fill="#8e44ad" font-family="serif">O</text>
+      </svg>
+      <div class="diagram-note">★ Draw this diagram clearly with all labels: M, M', O, Normal, ∠i, ∠r, Incident Ray, Reflected Ray</div>
+    </div>
+
+    <div class="sub-title">Laws of Reflection</div>
+    <div class="imp-box">
+      <div class="imp-label">★ Must Learn — Laws of Reflection</div>
+      <p><strong>Law 1:</strong> The <span class="kw-red">angle of incidence (∠i) is always equal to the angle of reflection (∠r)</span>.<br>
+      <em>∠i = ∠r</em></p>
+      <p style="margin-top:8px"><strong>Law 2:</strong> The <span class="kw-red">incident ray, the reflected ray, and the normal at the point of incidence — all lie in the same plane</span>.</p>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">Know More</div>
+      <p>More than 800 years ago, Indian astronomers in Bhāskara II's time used shallow bowls of water to observe stars. By studying the reflected images in water, they could measure the positions of stars — showing that reflection was understood long before modern science explained it.</p>
+    </div>
+
+    <div class="sub-title">Types of Reflection</div>
+    <div class="two-col">
+      <div class="def-box">
+        <div class="def-label">Regular Reflection</div>
+        <p>When a beam of parallel light rays falls on a <strong>smooth, polished surface</strong> (like a mirror), all rays reflect in the same direction — forming a clear, sharp image.<br><em>Example: Mirror, still water surface, polished metal.</em></p>
+      </div>
+      <div class="note-box">
+        <div class="note-label">Diffused / Irregular Reflection</div>
+        <p>When a beam of parallel light rays falls on a <strong>rough, uneven surface</strong>, rays reflect in many different directions — no clear image is formed, but the object is still visible.<br><em>Example: Paper, wall, cloth, wood.</em></p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="purple-head">Feature</th>
+            <th class="purple-head">Regular Reflection</th>
+            <th class="purple-head">Diffused Reflection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Surface</td><td>Smooth and polished</td><td>Rough and uneven</td></tr>
+          <tr><td>Direction of reflected rays</td><td>All in the same direction</td><td>In many different directions</td></tr>
+          <tr><td>Image formed</td><td>Clear, sharp image</td><td>No clear image</td></tr>
+          <tr><td>Example</td><td>Mirror, calm lake water</td><td>Paper, wall, wooden table</td></tr>
+          <tr><td>Laws of reflection</td><td>Followed at each point</td><td>Followed at each point individually</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="page-break">
+
+    <!-- SECTION 3: PLANE MIRROR -->
+    <div class="section-title">
+      <span class="section-num">SECTION 03</span>
+      Plane Mirror
+    </div>
+
+    <div class="def-box">
+      <div class="def-label">Definition</div>
+      <p>A <span class="kw">plane mirror</span> is a flat, smooth mirror with a polished reflecting surface. It is the most common type of mirror used in daily life — like the mirror in your bathroom.</p>
+    </div>
+
+    <div class="sub-title">Characteristics of Image Formed by a Plane Mirror</div>
+    <ul>
+      <li>The image is always <span class="kw">virtual</span> (cannot be formed on a screen).</li>
+      <li>The image is always <span class="kw">erect / upright</span> (not flipped up or down).</li>
+      <li>The image is of the <span class="kw">same size</span> as the object.</li>
+      <li>The image is formed <span class="kw">as far behind the mirror</span> as the object is in front of it. (object distance = image distance)</li>
+      <li>The image is <span class="kw-red">laterally inverted</span> — left side appears as right side and right side appears as left.</li>
+    </ul>
+
+    <div class="def-box">
+      <div class="def-label">Lateral Inversion</div>
+      <p><span class="kw">Lateral inversion</span> means the left and right sides of the image are reversed compared to the object. That is why when you raise your <strong>right hand</strong> in front of a mirror, your image appears to raise its <strong>left hand</strong>. Ambulances have their name written <strong>mirror-reversed</strong> so that drivers see it correctly in their rear-view mirrors.</p>
+    </div>
+
+    <!-- Diagram: Plane Mirror -->
+    <div class="diagram-box">
+      <div class="diagram-title">Diagram 2 — Image Formation in a Plane Mirror (Draw in Notebook)</div>
+      <svg width="420" height="200" viewBox="0 0 420 200">
+        <!-- Mirror -->
+        <rect x="200" y="20" width="8" height="170" fill="#c8d8f0" stroke="#7090c0" stroke-width="1.5"/>
+        <text x="216" y="110" font-size="11" fill="#336" font-family="serif">Mirror</text>
+        <!-- Object arrow -->
+        <line x1="110" y1="140" x2="110" y2="60" stroke="#c0392b" stroke-width="2.5"/>
+        <polygon points="110,60 103,80 117,80" fill="#c0392b"/>
+        <text x="80" y="155" font-size="11" fill="#c0392b" font-family="serif">Object</text>
+        <text x="76" y="167" font-size="11" fill="#c0392b" font-family="serif">(Real)</text>
+        <!-- Image arrow (dashed) -->
+        <line x1="290" y1="140" x2="290" y2="60" stroke="#2980b9" stroke-width="2" stroke-dasharray="6,3"/>
+        <polygon points="290,60 283,80 297,80" fill="#2980b9"/>
+        <text x="270" y="155" font-size="11" fill="#2980b9" font-family="serif">Image</text>
+        <text x="268" y="167" font-size="11" fill="#2980b9" font-family="serif">(Virtual)</text>
+        <!-- Distance lines -->
+        <line x1="110" y1="175" x2="204" y2="175" stroke="#888" stroke-width="1.2" stroke-dasharray="3,3"/>
+        <line x1="204" y1="175" x2="290" y2="175" stroke="#888" stroke-width="1.2" stroke-dasharray="3,3"/>
+        <text x="140" y="192" font-size="10" fill="#555" font-family="serif">d</text>
+        <text x="240" y="192" font-size="10" fill="#555" font-family="serif">d</text>
+        <text x="115" y="185" font-size="9" fill="#888" font-family="serif">←— d —→←— d —→</text>
+        <!-- Rays -->
+        <line x1="110" y1="80" x2="204" y2="80" stroke="#e67e22" stroke-width="1.2" stroke-dasharray="4,2"/>
+        <line x1="204" y1="80" x2="290" y2="80" stroke="#e67e22" stroke-width="1.2" stroke-dasharray="4,2"/>
+        <line x1="110" y1="120" x2="204" y2="120" stroke="#e67e22" stroke-width="1.2" stroke-dasharray="4,2"/>
+        <line x1="204" y1="120" x2="290" y2="120" stroke="#e67e22" stroke-width="1.2" stroke-dasharray="4,2"/>
+      </svg>
+      <div class="diagram-note">★ Label: Object (real), Mirror, Image (virtual), distance 'd' on both sides</div>
+    </div>
+
+    <div class="sub-sub-title">Uses of Plane Mirror</div>
+    <ul>
+      <li>Used in bathrooms and dressing tables for personal grooming.</li>
+      <li>Used in <strong>periscopes</strong> to see objects above or around corners.</li>
+      <li>Used in <strong>kaleidoscopes</strong> to create beautiful patterns.</li>
+      <li>Used in barber shops (two mirrors placed opposite to each other show multiple images).</li>
+      <li>Used in <strong>ambulances</strong> — the name is laterally written so drivers ahead see it correctly in mirrors.</li>
+    </ul>
+
+    <hr class="page-break">
+
+    <!-- SECTION 4: SPHERICAL MIRRORS -->
+    <div class="section-title">
+      <span class="section-num">SECTION 04</span>
+      Spherical Mirrors
+    </div>
+
+    <p>Spherical mirrors are curved mirrors that are a part of a hollow sphere. Unlike plane mirrors which are flat, spherical mirrors have a curved reflecting surface. There are two types of spherical mirrors:</p>
+
+    <div class="two-col">
+      <div class="imp-box">
+        <div class="imp-label">Concave Mirror</div>
+        <p>A mirror whose reflecting surface <strong>curves inward</strong> (like the inside of a bowl or the inside of a spoon). Also called a <span class="kw-red">converging mirror</span> because it brings light rays together.</p>
+      </div>
+      <div class="note-box">
+        <div class="note-label">Convex Mirror</div>
+        <p>A mirror whose reflecting surface <strong>curves outward</strong> (like the back of a spoon). Also called a <span class="kw">diverging mirror</span> because it spreads light rays apart.</p>
+      </div>
+    </div>
+
+    <div class="sub-title">Important Terms in Spherical Mirrors</div>
+    <ul>
+      <li><span class="kw-red">Centre of Curvature (C)</span> — The centre of the hollow sphere of which the mirror is a part.</li>
+      <li><span class="kw-red">Radius of Curvature (R)</span> — The radius of the hollow sphere (distance from pole to centre of curvature).</li>
+      <li><span class="kw-red">Pole (P)</span> — The midpoint of the reflecting surface of the mirror.</li>
+      <li><span class="kw-red">Principal Axis</span> — The imaginary line passing through the pole and the centre of curvature, perpendicular to the mirror surface.</li>
+      <li><span class="kw-red">Focus / Focal Point (F)</span> — The point on the principal axis where parallel rays of light, after reflection, meet (concave) or appear to diverge from (convex). It lies midway between the pole and the centre of curvature.</li>
+      <li><span class="kw-red">Focal Length (f)</span> — The distance between the pole and the focus. f = R/2</li>
+    </ul>
+
+    <!-- Concave Mirror Diagram -->
+    <div class="diagram-box">
+      <div class="diagram-title">Diagram 3 — Concave Mirror (Draw in Notebook)</div>
+      <svg width="420" height="160" viewBox="0 0 420 160">
+        <!-- Concave mirror arc -->
+        <path d="M 300 20 Q 230 80 300 140" fill="none" stroke="#2c3e50" stroke-width="3"/>
+        <!-- hatching -->
+        <path d="M 300 20 Q 230 80 300 140" fill="none" stroke="#bdc3c7" stroke-width="8" stroke-dasharray="3,5"/>
+        <!-- Principal axis -->
+        <line x1="30" y1="80" x2="310" y2="80" stroke="#7f8c8d" stroke-width="1.2" stroke-dasharray="6,4"/>
+        <!-- Pole P -->
+        <circle cx="262" cy="80" r="4" fill="#e74c3c"/>
+        <text x="260" y="68" font-size="11" fill="#e74c3c" font-family="serif" font-weight="bold">P</text>
+        <!-- Focus F -->
+        <circle cx="162" cy="80" r="4" fill="#8e44ad"/>
+        <text x="155" y="68" font-size="11" fill="#8e44ad" font-family="serif" font-weight="bold">F</text>
+        <!-- Centre C -->
+        <circle cx="62" cy="80" r="4" fill="#2980b9"/>
+        <text x="55" y="68" font-size="11" fill="#2980b9" font-family="serif" font-weight="bold">C</text>
+        <!-- Labels -->
+        <text x="10" y="50" font-size="11" fill="#2c3e50" font-family="serif">Principal Axis</text>
+        <!-- Rays converging -->
+        <line x1="30" y1="40" x2="300" y2="55" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="30" y1="80" x2="262" y2="80" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="30" y1="120" x2="300" y2="105" stroke="#e67e22" stroke-width="1.5"/>
+        <!-- Reflected rays converging at F -->
+        <line x1="300" y1="55" x2="162" y2="80" stroke="#27ae60" stroke-width="1.5"/>
+        <line x1="300" y1="105" x2="162" y2="80" stroke="#27ae60" stroke-width="1.5"/>
+        <line x1="262" y1="80" x2="162" y2="80" stroke="#27ae60" stroke-width="1.5"/>
+        <text x="290" y="155" font-size="11" fill="#2c3e50" font-family="serif">Concave Mirror</text>
+      </svg>
+      <div class="diagram-note">★ Label clearly: P (Pole), F (Focus), C (Centre of Curvature), Principal Axis, Incident rays (orange), Reflected rays (green)</div>
+    </div>
+
+    <!-- Convex Mirror Diagram -->
+    <div class="diagram-box">
+      <div class="diagram-title">Diagram 4 — Convex Mirror (Draw in Notebook)</div>
+      <svg width="420" height="160" viewBox="0 0 420 160">
+        <!-- Convex mirror arc -->
+        <path d="M 120 20 Q 200 80 120 140" fill="none" stroke="#2c3e50" stroke-width="3"/>
+        <path d="M 120 20 Q 200 80 120 140" fill="none" stroke="#bdc3c7" stroke-width="8" stroke-dasharray="3,5"/>
+        <!-- Principal axis -->
+        <line x1="100" y1="80" x2="400" y2="80" stroke="#7f8c8d" stroke-width="1.2" stroke-dasharray="6,4"/>
+        <!-- Pole P -->
+        <circle cx="155" cy="80" r="4" fill="#e74c3c"/>
+        <text x="155" y="68" font-size="11" fill="#e74c3c" font-family="serif" font-weight="bold">P</text>
+        <!-- Virtual Focus F (behind mirror) -->
+        <circle cx="252" cy="80" r="4" fill="#8e44ad"/>
+        <text x="248" y="68" font-size="11" fill="#8e44ad" font-family="serif" font-weight="bold">F</text>
+        <text x="235" y="105" font-size="10" fill="#8e44ad" font-family="serif">(virtual)</text>
+        <!-- Virtual C -->
+        <circle cx="352" cy="80" r="4" fill="#2980b9"/>
+        <text x="350" y="68" font-size="11" fill="#2980b9" font-family="serif" font-weight="bold">C</text>
+        <!-- Incident rays -->
+        <line x1="390" y1="40" x2="130" y2="55" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="390" y1="80" x2="155" y2="80" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="390" y1="120" x2="130" y2="105" stroke="#e67e22" stroke-width="1.5"/>
+        <!-- Reflected rays diverging -->
+        <line x1="130" y1="55" x2="60" y2="25" stroke="#27ae60" stroke-width="1.5"/>
+        <line x1="155" y1="80" x2="60" y2="80" stroke="#27ae60" stroke-width="1.5"/>
+        <line x1="130" y1="105" x2="60" y2="135" stroke="#27ae60" stroke-width="1.5"/>
+        <!-- Virtual rays dashed to F -->
+        <line x1="130" y1="55" x2="252" y2="80" stroke="#8e44ad" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="130" y1="105" x2="252" y2="80" stroke="#8e44ad" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="120" y="155" font-size="11" fill="#2c3e50" font-family="serif">Convex Mirror</text>
+      </svg>
+      <div class="diagram-note">★ Label: P, F (virtual, behind mirror), C (virtual), diverging reflected rays, Principal Axis</div>
+    </div>
+
+    <div class="sub-title">Difference Between Concave and Convex Mirror</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="red-head">Concave Mirror</th>
+            <th>Convex Mirror</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Reflecting surface</td><td>Curves inward (like bowl)</td><td>Curves outward (like ball)</td></tr>
+          <tr><td>Other name</td><td>Converging mirror</td><td>Diverging mirror</td></tr>
+          <tr><td>Effect on rays</td><td>Reflects rays towards focus (converges)</td><td>Spreads rays outward (diverges)</td></tr>
+          <tr><td>Image nature</td><td>Can be real or virtual, inverted or erect, enlarged or diminished</td><td>Always virtual, erect, and diminished</td></tr>
+          <tr><td>Field of view</td><td>Smaller field of view</td><td>Wider field of view</td></tr>
+          <tr><td>Uses</td><td>Torches, headlights, dentist mirror, telescope</td><td>Side-view mirrors in vehicles, security mirrors in shops</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="page-break">
+
+    <!-- SECTION 5: IMAGES FORMED -->
+    <div class="section-title">
+      <span class="section-num">SECTION 05</span>
+      Characteristics of Images Formed by Spherical Mirrors
+    </div>
+
+    <div class="sub-sub-title">Real Image vs Virtual Image</div>
+    <div class="two-col">
+      <div class="imp-box">
+        <div class="imp-label">Real Image</div>
+        <p>Formed when reflected rays <strong>actually meet</strong> at a point. Can be caught on a screen. Always <strong>inverted</strong>. Example: image in a concave mirror when object is far away.</p>
+      </div>
+      <div class="note-box">
+        <div class="note-label">Virtual Image</div>
+        <p>Formed when reflected rays appear to meet behind the mirror (they don't actually meet). <strong>Cannot</strong> be caught on a screen. Always <strong>erect</strong>. Example: image in a plane mirror or convex mirror.</p>
+      </div>
+    </div>
+
+    <div class="sub-title">Images Formed by Concave Mirror</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="red-head">Position of Object</th>
+            <th class="red-head">Position of Image</th>
+            <th class="red-head">Size of Image</th>
+            <th class="red-head">Nature of Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Very close (3–4 cm)</td>
+            <td>Behind the mirror</td>
+            <td>Large / Magnified</td>
+            <td>Virtual, Erect</td>
+          </tr>
+          <tr>
+            <td>Far away (≥ 20 cm)</td>
+            <td>In front of mirror</td>
+            <td>Small / Diminished</td>
+            <td>Real, Inverted</td>
+          </tr>
+          <tr>
+            <td>At infinity (very far)</td>
+            <td>At focus (F)</td>
+            <td>Very small (point)</td>
+            <td>Real, Inverted</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-title">Images Formed by Convex Mirror</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Position of Object</th>
+            <th>Position of Image</th>
+            <th>Size of Image</th>
+            <th>Nature of Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Any distance (close or far)</td>
+            <td>Behind the mirror</td>
+            <td>Small / Diminished</td>
+            <td>Virtual, Erect</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="green-box">
+      <p><strong>Quick Memory Trick:</strong></p>
+      <ul>
+        <li><strong>Concave + Close</strong> → <span class="kw-green">Large, Upright, Virtual</span></li>
+        <li><strong>Concave + Far</strong> → <span class="kw-red">Small, Inverted, Real</span></li>
+        <li><strong>Convex + Any</strong> → <span class="kw">Small, Upright, Virtual (always!)</span></li>
+      </ul>
+    </div>
+
+    <hr class="page-break">
+
+    <!-- SECTION 6: USES -->
+    <div class="section-title">
+      <span class="section-num">SECTION 06</span>
+      Real-Life Uses of Spherical Mirrors
+    </div>
+
+    <div class="sub-title">Uses of Concave Mirror</div>
+    <ul>
+      <li><strong>Torches and Car Headlights:</strong> The concave curved surface reflects light into a strong, focused beam so that light travels far ahead.</li>
+      <li><strong>Dentist's Mirror:</strong> Dentists use small concave mirrors to get a magnified (larger) image of your teeth and see clearly.</li>
+      <li><strong>Telescopes:</strong> Large curved concave mirrors collect light from distant stars and help astronomers observe them.</li>
+      <li><strong>Solar Cookers &amp; Solar Furnaces:</strong> Concave mirrors focus sunlight on one spot to produce heat for cooking or melting metals.</li>
+      <li><strong>Shaving/Make-up Mirrors:</strong> A concave mirror held close gives a large, erect (upright) image — great for detailed work.</li>
+    </ul>
+
+    <div class="sub-title">Uses of Convex Mirror</div>
+    <ul>
+      <li><strong>Side-View Mirrors in Vehicles:</strong> Convex mirrors give a wider field of view. Drivers can see more of the road behind them. This is why they say <em>"Objects in mirror are closer than they appear."</em></li>
+      <li><strong>Security Mirrors in Shops:</strong> Convex mirrors placed at shop corners allow shopkeepers to see a wide area of the shop.</li>
+      <li><strong>ATM Mirrors:</strong> Small convex mirrors placed near ATMs help users see who is standing behind them.</li>
+    </ul>
+
+    <div class="imp-box">
+      <div class="imp-label">Why Concave Mirrors are NOT Used as Rear-View Mirrors</div>
+      <p>Concave mirrors form <strong>inverted (upside-down)</strong> images when objects are far away. This would confuse drivers. Convex mirrors always show <strong>erect, smaller</strong> images and a wider area — making them safer and more practical for driving.</p>
+    </div>
+
+    <hr class="page-break">
+
+    <!-- SECTION 7: REFRACTION -->
+    <div class="section-title">
+      <span class="section-num">SECTION 07</span>
+      Refraction of Light
+    </div>
+
+    <div class="def-box">
+      <div class="def-label">Definition</div>
+      <p><span class="kw">Refraction</span> is the bending of light when it passes from one medium to another (e.g., from air to glass, or from air to water). The bending happens because light changes its speed as it moves from one medium to another.</p>
+    </div>
+
+    <div class="sub-sub-title">Cause of Refraction</div>
+    <p>Light travels at different speeds in different mediums:</p>
+    <ul>
+      <li>In air/vacuum → speed is highest (3 × 10⁸ m/s)</li>
+      <li>In water → speed decreases</li>
+      <li>In glass → speed decreases even more</li>
+    </ul>
+    <p>When light enters a <strong>denser medium</strong> (like glass), it slows down and <strong>bends towards the normal</strong>. When it enters a <strong>rarer medium</strong> (like air from glass), it speeds up and <strong>bends away from the normal</strong>.</p>
+
+    <!-- Refraction Diagram -->
+    <div class="diagram-box">
+      <div class="diagram-title">Diagram 5 — Refraction Through a Glass Slab (Draw in Notebook)</div>
+      <svg width="420" height="200" viewBox="0 0 420 200">
+        <!-- Glass slab -->
+        <rect x="140" y="60" width="140" height="90" fill="rgba(100,180,255,0.18)" stroke="#3498db" stroke-width="2"/>
+        <text x="170" y="112" font-size="11" fill="#2980b9" font-family="serif">Glass Slab</text>
+        <!-- Normal lines -->
+        <line x1="210" y1="10" x2="210" y2="195" stroke="#888" stroke-width="1" stroke-dasharray="5,4"/>
+        <text x="220" y="20" font-size="10" fill="#888" font-family="serif">Normal</text>
+        <!-- Incident ray -->
+        <line x1="100" y1="15" x2="210" y2="60" stroke="#e74c3c" stroke-width="2"/>
+        <polygon points="210,60 195,47 205,52" fill="#e74c3c"/>
+        <text x="70" y="22" font-size="11" fill="#e74c3c" font-family="serif">Incident ray</text>
+        <!-- Refracted ray inside glass -->
+        <line x1="210" y1="60" x2="210" y2="150" stroke="#8e44ad" stroke-width="2"/>
+        <text x="218" y="108" font-size="10" fill="#8e44ad" font-family="serif">Refracted</text>
+        <!-- Emergent ray -->
+        <line x1="210" y1="150" x2="320" y2="195" stroke="#27ae60" stroke-width="2"/>
+        <polygon points="320,195 302,183 310,186" fill="#27ae60"/>
+        <text x="290" y="188" font-size="11" fill="#27ae60" font-family="serif">Emergent ray</text>
+        <!-- Angle labels -->
+        <text x="215" y="55" font-size="10" fill="#e74c3c" font-family="serif">∠i</text>
+        <text x="215" y="75" font-size="10" fill="#8e44ad" font-family="serif">∠r</text>
+        <!-- Air / Glass labels -->
+        <text x="50" y="90" font-size="11" fill="#555" font-family="serif">Air</text>
+        <text x="330" y="90" font-size="11" fill="#555" font-family="serif">Air</text>
+      </svg>
+      <div class="diagram-note">★ Label: Incident ray, Normal, ∠i (angle of incidence), ∠r (angle of refraction), Refracted ray, Emergent ray, Air, Glass</div>
+    </div>
+
+    <div class="sub-sub-title">Daily Life Examples of Refraction</div>
+    <ul>
+      <li>A <strong>pencil placed in a glass of water</strong> looks broken or bent at the surface — this is refraction.</li>
+      <li>A pool of water looks <strong>shallower</strong> than it actually is because of refraction.</li>
+      <li><strong>Mirages</strong> in deserts or on hot roads — light bends through layers of air at different temperatures.</li>
+      <li>Stars appear to <strong>twinkle</strong> because their light refracts through different layers of the atmosphere.</li>
+      <li>A <strong>magnifying glass</strong> works by refracting light through a convex lens to make objects appear larger.</li>
+    </ul>
+
+    <div class="sub-title">Difference Between Reflection and Refraction</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="green-head">Feature</th>
+            <th class="green-head">Reflection</th>
+            <th class="green-head">Refraction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>What happens?</td><td>Light bounces back into same medium</td><td>Light bends and enters a different medium</td></tr>
+          <tr><td>Medium change?</td><td>No — light stays in same medium</td><td>Yes — light changes medium</td></tr>
+          <tr><td>Speed of light</td><td>Unchanged</td><td>Changes (increases or decreases)</td></tr>
+          <tr><td>Surface needed</td><td>Opaque/reflective surface (mirror)</td><td>Transparent surface (glass, water)</td></tr>
+          <tr><td>Example</td><td>Mirror image, echo of light</td><td>Bent pencil in water, rainbow</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="page-break">
+
+    <!-- SECTION 8: LENSES -->
+    <div class="section-title">
+      <span class="section-num">SECTION 08</span>
+      Lenses
+    </div>
+
+    <div class="def-box">
+      <div class="def-label">Definition of Lens</div>
+      <p>A <span class="kw">lens</span> is a piece of transparent material (like glass or plastic) with <strong>one or two curved surfaces</strong>. Unlike a mirror which <em>reflects</em> light, a lens <em>refracts</em> (bends) light that passes through it.</p>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">A Simple Experiment — Water Drop Lens!</div>
+      <p>Place a round drop of water on a flat strip of glass over some printed text. Look through the water drop. The text appears <strong>bigger</strong>! That is because the curved surface of the water drop acts like a convex lens — it bends light and magnifies the image. This is exactly how a magnifying glass works.</p>
+    </div>
+
+    <div class="sub-title">Types of Lenses</div>
+    <div class="two-col">
+      <div class="imp-box">
+        <div class="imp-label">Convex Lens</div>
+        <p>A lens that is <strong>thicker in the middle and thinner at the edges</strong>. It is also called a <span class="kw-red">converging lens</span> because it bends light inward and brings rays together at a point (focus).</p>
+        <p><em>Examples: Magnifying glass, camera lens, human eye lens, spectacles for far-sightedness.</em></p>
+      </div>
+      <div class="note-box">
+        <div class="note-label">Concave Lens</div>
+        <p>A lens that is <strong>thinner in the middle and thicker at the edges</strong>. It is also called a <span class="kw">diverging lens</span> because it bends light outward and spreads rays apart.</p>
+        <p><em>Examples: Spectacles for short-sightedness (myopia), spy-holes in doors.</em></p>
+      </div>
+    </div>
+
+    <!-- Lens Diagrams -->
+    <div class="diagram-box">
+      <div class="diagram-title">Diagram 6 — Convex Lens and Concave Lens (Draw in Notebook)</div>
+      <svg width="420" height="160" viewBox="0 0 420 160">
+        <!-- CONVEX LENS -->
+        <ellipse cx="115" cy="80" rx="22" ry="55" fill="rgba(100,180,255,0.25)" stroke="#2980b9" stroke-width="2.5"/>
+        <text x="88" y="150" font-size="12" fill="#2980b9" font-family="serif" font-weight="bold">Convex Lens</text>
+        <!-- Parallel rays in -->
+        <line x1="20" y1="50" x2="100" y2="50" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="20" y1="80" x2="93" y2="80" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="20" y1="110" x2="100" y2="110" stroke="#e67e22" stroke-width="1.5"/>
+        <!-- Converging rays out -->
+        <line x1="130" y1="50" x2="200" y2="80" stroke="#27ae60" stroke-width="1.5"/>
+        <line x1="137" y1="80" x2="200" y2="80" stroke="#27ae60" stroke-width="1.5"/>
+        <line x1="130" y1="110" x2="200" y2="80" stroke="#27ae60" stroke-width="1.5"/>
+        <circle cx="200" cy="80" r="4" fill="#c0392b"/>
+        <text x="202" y="74" font-size="11" fill="#c0392b" font-family="serif">F</text>
+
+        <!-- CONCAVE LENS -->
+        <path d="M 280 25 Q 310 80 280 135" fill="rgba(100,180,255,0.25)" stroke="#8e44ad" stroke-width="2.5"/>
+        <path d="M 300 25 Q 270 80 300 135" fill="rgba(100,180,255,0.25)" stroke="#8e44ad" stroke-width="2.5"/>
+        <path d="M 280 25 Q 310 80 280 135 L 280 25" fill="rgba(180,150,220,0.2)" stroke="none"/>
+        <path d="M 280 25 Q 290 80 280 135 Q 310 80 280 25" fill="rgba(180,150,220,0.2)" stroke="none"/>
+        <text x="262" y="150" font-size="12" fill="#8e44ad" font-family="serif" font-weight="bold">Concave Lens</text>
+        <!-- Parallel rays in -->
+        <line x1="230" y1="50" x2="278" y2="50" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="230" y1="80" x2="275" y2="80" stroke="#e67e22" stroke-width="1.5"/>
+        <line x1="230" y1="110" x2="278" y2="110" stroke="#e67e22" stroke-width="1.5"/>
+        <!-- Diverging rays out -->
+        <line x1="300" y1="50" x2="390" y2="30" stroke="#27ae60" stroke-width="1.5"/>
+        <line x1="300" y1="80" x2="390" y2="80" stroke="#27ae60" stroke-width="1.5"/>
+        <line x1="300" y1="110" x2="390" y2="130" stroke="#27ae60" stroke-width="1.5"/>
+        <!-- Virtual focus dashed -->
+        <line x1="300" y1="50" x2="230" y2="80" stroke="#8e44ad" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="300" y1="110" x2="230" y2="80" stroke="#8e44ad" stroke-width="1" stroke-dasharray="4,3"/>
+        <circle cx="230" cy="80" r="3" fill="#8e44ad"/>
+        <text x="210" y="74" font-size="10" fill="#8e44ad" font-family="serif">F(v)</text>
+      </svg>
+      <div class="diagram-note">★ For Convex: Draw converging rays meeting at F. For Concave: Draw diverging rays that appear to meet at virtual F behind the lens.</div>
+    </div>
+
+    <div class="sub-title">Images Formed by Lenses</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="purple-head">Lens Type</th>
+            <th class="purple-head">Object Distance</th>
+            <th class="purple-head">Image Size</th>
+            <th class="purple-head">Image Type</th>
+            <th class="purple-head">Image Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Convex Lens</td><td>Close</td><td>Enlarged</td><td>Erect, Virtual</td><td>Behind lens</td></tr>
+          <tr><td>Convex Lens</td><td>Far</td><td>Smaller, Inverted</td><td>Real</td><td>In front of lens (on screen)</td></tr>
+          <tr><td>Concave Lens</td><td>Any distance</td><td>Small, Erect</td><td>Virtual</td><td>Behind lens</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-title">Difference Between Convex Lens and Concave Lens</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="red-head">Convex Lens</th>
+            <th>Concave Lens</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Shape</td><td>Thicker in middle, thinner at edges</td><td>Thinner in middle, thicker at edges</td></tr>
+          <tr><td>Other name</td><td>Converging lens</td><td>Diverging lens</td></tr>
+          <tr><td>Effect on light</td><td>Bends light inward (converges)</td><td>Bends light outward (diverges)</td></tr>
+          <tr><td>Image formed</td><td>Real/virtual, enlarged/small, erect/inverted</td><td>Always virtual, erect, smaller</td></tr>
+          <tr><td>Uses</td><td>Magnifying glass, camera, projector, human eye</td><td>Spectacles for short-sightedness</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-title">Difference Between Mirror and Lens</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="green-head">Feature</th>
+            <th class="green-head">Mirror</th>
+            <th class="green-head">Lens</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Material</td><td>Reflective / Opaque</td><td>Transparent (glass or plastic)</td></tr>
+          <tr><td>Light behaviour</td><td>Reflects light</td><td>Refracts (bends) light</td></tr>
+          <tr><td>Surface shape</td><td>Curved or flat</td><td>Curved</td></tr>
+          <tr><td>Examples</td><td>Bathroom mirror, car side mirror</td><td>Magnifying glass, spectacles, camera</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-sub-title">Lens and the Human Eye</div>
+    <p>The human eye contains a natural <span class="kw">convex lens</span>. This lens bends the light entering the eye and focuses it on the <strong>retina</strong> (back of the eye) to form a clear image. Problems with the eye's lens cause vision problems:</p>
+    <ul>
+      <li><strong>Short-sightedness (Myopia)</strong> — Cannot see far objects clearly. Corrected using a <span class="kw-red">concave lens</span> (diverging lens) in spectacles.</li>
+      <li><strong>Far-sightedness (Hypermetropia)</strong> — Cannot see near objects clearly. Corrected using a <span class="kw-green">convex lens</span> (converging lens) in spectacles.</li>
+    </ul>
+
+  </div><!-- end page-inner -->
+  </div><!-- end page-content -->
+
+  <!-- EXAM SECTION -->
+  <div class="exam-section">
+    <div style="position:relative;margin-left:0">
+      <div class="section-title" style="margin-top:10px">
+        <span class="section-num" style="color:#f0c060">SECTION 09</span>
+        Exam-Oriented Questions &amp; Answers
+        <span class="stamp">Exam Ready</span>
+      </div>
+
+      <!-- Important Definitions -->
+      <div class="sub-title">Important Definitions to Remember</div>
+      <div class="keywords-grid">
+        <div class="keyword-card"><span class="kw-term">Reflection</span><span class="kw-def">Bouncing back of light from a surface into the same medium.</span></div>
+        <div class="keyword-card"><span class="kw-term">Refraction</span><span class="kw-def">Bending of light when it passes from one medium to another.</span></div>
+        <div class="keyword-card"><span class="kw-term">Concave Mirror</span><span class="kw-def">A spherical mirror with an inward-curving reflecting surface.</span></div>
+        <div class="keyword-card"><span class="kw-term">Convex Mirror</span><span class="kw-def">A spherical mirror with an outward-curving reflecting surface.</span></div>
+        <div class="keyword-card"><span class="kw-term">Focal Length</span><span class="kw-def">Distance between the pole and focus of a spherical mirror. f = R/2</span></div>
+        <div class="keyword-card"><span class="kw-term">Lateral Inversion</span><span class="kw-def">Left-right reversal of image in a plane mirror.</span></div>
+        <div class="keyword-card"><span class="kw-term">Virtual Image</span><span class="kw-def">An image that cannot be caught on a screen; always erect.</span></div>
+        <div class="keyword-card"><span class="kw-term">Real Image</span><span class="kw-def">An image formed by actual meeting of reflected rays; can be caught on screen; always inverted.</span></div>
+        <div class="keyword-card"><span class="kw-term">Convex Lens</span><span class="kw-def">A converging lens — thicker in the middle, thinner at edges.</span></div>
+        <div class="keyword-card"><span class="kw-term">Concave Lens</span><span class="kw-def">A diverging lens — thinner in the middle, thicker at edges.</span></div>
+        <div class="keyword-card"><span class="kw-term">Normal</span><span class="kw-def">A line drawn perpendicular (90°) to the mirror at the point of incidence.</span></div>
+        <div class="keyword-card"><span class="kw-term">Luminous Object</span><span class="kw-def">An object that produces its own light. E.g., Sun, candle.</span></div>
+      </div>
+
+      <!-- Fill in the blanks -->
+      <div class="sub-title">Fill in the Blanks</div>
+      <div class="exam-question"><span class="q-num">1.</span> The angle of incidence is always _______ to the angle of reflection. <div class="answer">Ans: equal</div></div>
+      <div class="exam-question"><span class="q-num">2.</span> A concave mirror is also called a _______ mirror. <div class="answer">Ans: converging</div></div>
+      <div class="exam-question"><span class="q-num">3.</span> A plane mirror always forms a _______ image. <div class="answer">Ans: virtual, erect, same-sized</div></div>
+      <div class="exam-question"><span class="q-num">4.</span> Dentists use _______ mirrors to see a magnified image of your teeth. <div class="answer">Ans: concave</div></div>
+      <div class="exam-question"><span class="q-num">5.</span> A convex lens is also called a _______ lens. <div class="answer">Ans: converging</div></div>
+      <div class="exam-question"><span class="q-num">6.</span> Vehicles use _______ mirrors as side-view mirrors to get a wider field of view. <div class="answer">Ans: convex</div></div>
+      <div class="exam-question"><span class="q-num">7.</span> The bending of light as it passes from one medium to another is called _______. <div class="answer">Ans: refraction</div></div>
+      <div class="exam-question"><span class="q-num">8.</span> The focal length of a mirror = _______ / 2. <div class="answer">Ans: Radius of curvature (R)</div></div>
+
+      <!-- True/False -->
+      <div class="sub-title">True or False</div>
+      <div class="exam-question"><span class="q-num">1.</span> A plane mirror forms a real image. <div class="answer">Ans: False (it forms a virtual image)</div></div>
+      <div class="exam-question"><span class="q-num">2.</span> A convex mirror always forms a virtual, erect, and diminished image. <div class="answer">Ans: True</div></div>
+      <div class="exam-question"><span class="q-num">3.</span> Refraction occurs because light changes speed in different mediums. <div class="answer">Ans: True</div></div>
+      <div class="exam-question"><span class="q-num">4.</span> A concave lens is a converging lens. <div class="answer">Ans: False (it is a diverging lens)</div></div>
+      <div class="exam-question"><span class="q-num">5.</span> The Moon is a luminous body. <div class="answer">Ans: False (it is non-luminous)</div></div>
+      <div class="exam-question"><span class="q-num">6.</span> Laws of reflection apply only to plane mirrors. <div class="answer">Ans: False (they apply to all types of mirrors)</div></div>
+
+      <!-- MCQs -->
+      <div class="sub-title">Multiple Choice Questions (MCQs)</div>
+      <div class="exam-question"><span class="q-num">1.</span> What type of image is formed when an object is held very close (3–4 cm) to a concave mirror?<br>
+        <span class="mcq-option">(a) Small, inverted, real</span>
+        <span class="mcq-option">(b) Large, upright, virtual ✓</span>
+        <span class="mcq-option">(c) Small, upright, virtual</span>
+        <span class="mcq-option">(d) Same size, real</span>
+        <div class="answer">Ans: (b) Large, upright, virtual</div>
+      </div>
+      <div class="exam-question"><span class="q-num">2.</span> Why do vehicles use convex mirrors as side-view mirrors?<br>
+        <span class="mcq-option">(a) They magnify images</span>
+        <span class="mcq-option">(b) They make far objects look closer</span>
+        <span class="mcq-option">(c) They give a wider field of view ✓</span>
+        <span class="mcq-option">(d) They focus sunlight</span>
+        <div class="answer">Ans: (c) They give a wider field of view</div>
+      </div>
+      <div class="exam-question"><span class="q-num">3.</span> What is the angle of incidence when angle of reflection is 45°?<br>
+        <span class="mcq-option">(a) 90°</span>
+        <span class="mcq-option">(b) 180°</span>
+        <span class="mcq-option">(c) 30°</span>
+        <span class="mcq-option">(d) 45° ✓</span>
+        <div class="answer">Ans: (d) 45° — because ∠i = ∠r (Law of Reflection)</div>
+      </div>
+      <div class="exam-question"><span class="q-num">4.</span> Which of these is a diverging lens?<br>
+        <span class="mcq-option">(a) Convex lens</span>
+        <span class="mcq-option">(b) Concave lens ✓</span>
+        <span class="mcq-option">(c) Plane mirror</span>
+        <span class="mcq-option">(d) Concave mirror</span>
+        <div class="answer">Ans: (b) Concave lens</div>
+      </div>
+      <div class="exam-question"><span class="q-num">5.</span> Which type of mirror is used in a torch?<br>
+        <span class="mcq-option">(a) Plane</span>
+        <span class="mcq-option">(b) Convex</span>
+        <span class="mcq-option">(c) Concave ✓</span>
+        <span class="mcq-option">(d) None</span>
+        <div class="answer">Ans: (c) Concave — it reflects light into a focused beam</div>
+      </div>
+
+      <!-- VSA -->
+      <div class="sub-title">Very Short Answer Questions (1 Mark)</div>
+      <div class="exam-question"><span class="q-num">Q1.</span> What is reflection of light?<div class="answer">Ans: Reflection is the bouncing back of light when it hits a surface and returns to the same medium.</div></div>
+      <div class="exam-question"><span class="q-num">Q2.</span> State the first law of reflection.<div class="answer">Ans: The angle of incidence is always equal to the angle of reflection (∠i = ∠r).</div></div>
+      <div class="exam-question"><span class="q-num">Q3.</span> What is lateral inversion?<div class="answer">Ans: Lateral inversion is the left-right reversal of the image formed in a plane mirror.</div></div>
+      <div class="exam-question"><span class="q-num">Q4.</span> Name the type of mirror used by dentists.<div class="answer">Ans: Concave mirror (it gives a magnified, erect image).</div></div>
+      <div class="exam-question"><span class="q-num">Q5.</span> What is a lens?<div class="answer">Ans: A lens is a piece of transparent material (glass or plastic) with curved surfaces that bends (refracts) light.</div></div>
+
+      <!-- Short Answer -->
+      <div class="sub-title">Short Answer Questions (2–3 Marks)</div>
+      <div class="exam-question"><span class="q-num">Q1.</span> What are the characteristics of the image formed by a plane mirror?<div class="answer">Ans: (1) Virtual and erect. (2) Same size as the object. (3) Formed at the same distance behind the mirror as the object is in front. (4) Laterally inverted.</div></div>
+      <div class="exam-question"><span class="q-num">Q2.</span> Why do convex mirrors always form smaller images?<div class="answer">Ans: Convex mirrors have a curved-outward surface that diverges (spreads) reflected light rays. Because the rays spread apart, they appear to come from a point behind the mirror, forming a smaller, virtual, erect image — regardless of how far or close the object is.</div></div>
+      <div class="exam-question"><span class="q-num">Q3.</span> Differentiate between a real image and a virtual image.<div class="answer">Ans: Real image — formed by actual meeting of reflected rays; can be caught on a screen; always inverted. Virtual image — formed where reflected rays appear to meet (but don't actually); cannot be caught on a screen; always erect.</div></div>
+      <div class="exam-question"><span class="q-num">Q4.</span> What is refraction? Give one example.<div class="answer">Ans: Refraction is the bending of light when it travels from one medium to another. It happens because light changes speed. Example: A pencil placed in a glass of water appears bent at the surface — this is due to refraction.</div></div>
+
+      <!-- Long Answer -->
+      <div class="sub-title">Long Answer Questions (5 Marks)</div>
+      <div class="exam-question"><span class="q-num">Q1.</span> Explain the laws of reflection with a labelled diagram.<div class="answer">Ans: When light hits a mirror surface, it reflects according to two laws:
+Law 1: The angle of incidence (∠i) = angle of reflection (∠r). The angle of incidence is the angle between the incident ray and the normal; the angle of reflection is the angle between the reflected ray and the normal.
+Law 2: The incident ray, the reflected ray, and the normal at the point of incidence — all lie in the same plane.
+[Draw Diagram 1 from the notes — label: Incident ray, Reflected ray, Normal, ∠i, ∠r, Mirror MM', Point of Incidence O]</div></div>
+      <div class="exam-question"><span class="q-num">Q2.</span> Compare concave mirror and convex mirror with examples and uses.<div class="answer">Ans: See Difference Table in Section 04. Key points:
+Concave mirror: curves inward, converges light, forms different images depending on distance (virtual+magnified when close; real+inverted when far). Used in torches, headlights, dentist mirrors, solar cookers.
+Convex mirror: curves outward, diverges light, always forms virtual+erect+diminished image. Used in vehicle side-view mirrors, shop security mirrors, ATM mirrors.
+[Draw both diagrams — Diagram 3 and Diagram 4 from notes]</div></div>
+      <div class="exam-question"><span class="q-num">Q3.</span> What is refraction of light? Explain with a diagram and give three daily-life examples.<div class="answer">Ans: Refraction is bending of light when it passes from one medium to another due to change in speed. When light goes from rarer to denser medium (air to glass), it slows down and bends towards the normal. When it goes from denser to rarer (glass to air), it speeds up and bends away from normal.
+[Draw Diagram 5 — label: Incident ray, Normal, ∠i, ∠r, Refracted ray, Air, Glass]
+Examples: (1) Pencil in water appears bent. (2) Pool looks shallower than it is. (3) Stars appear to twinkle due to atmospheric refraction.</div></div>
+
+    </div>
+  </div><!-- end exam section -->
+
+</div><!-- end notebook -->
+
+</body>
+</html>
